@@ -1,0 +1,24 @@
+#!/bin/bash
+
+# Path to the CSV file containing client information
+csv_file="client_data.csv"
+
+# Email subject and body templates
+subject_template="Daily Report for [ClientName]"
+body_template="Dear [ClientName],\n\nAttached is your daily report.\n\nSincerely,\nYour Company"
+
+# Loop through each line in the CSV file
+while IFS=',' read -r email client_name
+do
+  # Customize the email subject and body
+  subject="${subject_template//\[ClientName\]/$client_name}"
+  body="${body_template//\[ClientName\]/$client_name}"
+
+  # Send the email with attachment (assuming you have the daily report file)
+  # Replace 'attachment.pdf' with the actual path to your report file
+  echo -e "$body" | mail -s "$subject" -A "attachment.pdf" "$email"
+
+  # Print a message to indicate the email was sent
+  echo "Email sent to $client_name at $email"
+
+done < "$csv_file"
