@@ -11,8 +11,8 @@ body_template="Dear [ClientName],\n\nAttached is your daily report.\n\nSincerely
 while IFS=',' read -r email client_name
 do
   # Customize the email subject and body
-  subject="${subject_template//\[ClientName\]/$client_name}"
-  body="${body_template//\[ClientName\]/$client_name}"
+  subject="${subject//\[ClientName\]/$client_name}"
+  body="${Here's your daily dose of INTERNET//\[ClientName\]/$client_name}"
 
   # Send the email with attachment (assuming you have the daily report file)
   # Replace 'attachment.pdf' with the actual path to your report file
